@@ -1,0 +1,91 @@
+{
+  "name": "@qiwi/card-info",
+  "version": "0.0.0",
+  "description": "Library for getting card info by its PAN",
+  "main": "dist/index.js",
+  "scripts": {
+    "jest": "jest -w 2",
+    "lint": "standard-flow src/**/*.js test/**/*.js",
+    "flow": "flow",
+    "test": "npm run lint && npm run flow && npm run jest",
+    "flow_coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",
+    "build": "BABEL_ENV=production babel src --out-dir dist",
+    "coveralls": "npm test && cat ./coverage/lcov.info | coveralls",
+    "minor": "npm test && npm run build && standard-version --release-as minor && npm run postversion",
+    "major": "npm test && npm run build && standard-version --release-as major && npm run postversion",
+    "release": "npm test && npm run build && standard-version && npm run postversion",
+    "postversion": "npm run push && npm publish",
+    "push": "git push --follow-tags origin master",
+    "doc": "documentation build src/** -f html -o docs",
+    "docs": "npm run doc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qiwi/common-formatters.git"
+  },
+  "keywords": [
+    "card type",
+    "card detect",
+    "credit debit card checker",
+    "pan info"
+  ],
+  "author": "Anton Golub <a.golub@qiwi.com>",
+  "license": "MIT",
+  "dependencies": {
+    "luhn-alg": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-minify": "^0.3.0",
+    "babel-register": "^6.26.0",
+    "coveralls": "^3.0.0",
+    "documentation": "^6.1.0",
+    "flow-bin": "^0.69.0",
+    "flow-coverage-report": "^0.5.0",
+    "flow-remove-types": "^1.2.3",
+    "jest": "^22.4.3",
+    "lodash": "^4.17.5",
+    "standard-flow": "^1.0.0",
+    "standard-version": "^4.3.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/interface.js"
+    ],
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.js"
+    ],
+    "testMatch": [
+      "<rootDir>/test/**/*.js"
+    ]
+  },
+  "files": [
+    "README.md",
+    "CHANGELOG.md",
+    "dist/"
+  ],
+  "standard-flow": {
+    "parser": "babel-eslint",
+    "globals": [
+      "it",
+      "expect",
+      "describe"
+    ],
+    "ignore": [],
+    "plugins": [
+      "flowtype"
+    ],
+    "settings": {
+      "flowtype": {
+        "onlyFilesWithFlowAnnotation": true
+      }
+    }
+  }
+}
