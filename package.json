@@ -50,6 +50,7 @@
     "flow-coverage-report": "^0.5.0",
     "flow-remove-types": "^1.2.3",
     "jest": "^22.4.3",
+    "jest-fetch-mock": "^1.5.0",
     "lodash": "^4.17.5",
     "standard-flow": "^1.0.0",
     "standard-version": "^4.3.0"
@@ -62,8 +63,14 @@
     "collectCoverageFrom": [
       "<rootDir>/src/**/*.js"
     ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/test/setupJest.js"
+    ],
     "testMatch": [
       "<rootDir>/test/**/*.js"
+    ],
+    "setupFiles": [
+      "<rootDir>/test/setupJest.js"
     ]
   },
   "files": [
@@ -76,7 +83,9 @@
     "globals": [
       "it",
       "expect",
-      "describe"
+      "describe",
+      "beforeEach",
+      "fetch"
     ],
     "ignore": [],
     "plugins": [
