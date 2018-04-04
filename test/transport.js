@@ -12,6 +12,7 @@ describe('transport', () => {
         expect(res.body).toEqual(data)
         done()
       })
+      .catch()
 
     expect(fetch.mock.calls.length).toEqual(1)
     expect(fetch.mock.calls[0][0]).toEqual('https://example.com')

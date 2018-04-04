@@ -6,9 +6,13 @@ export type IPaymentSystemDefinition = {
   key: string;
   name: string;
   prefixPattern: RegExp;
-  typePattern: RegExp;
-  lengths: []
+  panPattern: RegExp;
+  lengths: number[];
+  codeName: string;
+  codeLength: number;
+  algorithm?: string;
 }
+export type IPaymentSystemDefinitions = IPaymentSystemDefinition[]
 
 export type IBinDefinition = {
 }
@@ -19,8 +23,8 @@ export type IPaymentSystem = string
 export type IServiceOpts = Object
 export interface IService {
   constructor(IServiceOpts): IService;
-  getPaymentSystem(pan: string): ?IPaymentSystem;
-  getCardInfo(pan: string): ?ICardInfo;
+  getPaymentSystem(pan: string): Promise<?IPaymentSystem>;
+  getCardInfo(pan: string): Promise<?ICardInfo>;
 }
 
 export type IHttpOpts = URL | Request | string
