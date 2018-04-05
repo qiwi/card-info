@@ -1,16 +1,22 @@
 // @flow
 
-import type {ICardInfo, IService, IPaymentSystem, IServiceOpts} from '../../interface'
+import type {ICardInfo, IService, IPaymentSystem, IServiceOpts, IAny} from '../../interface'
 import paymentSystemList from './paymentSystemList'
 import binList from './binList'
+
+import Promise from '../../assets/promise'
 
 export {
   paymentSystemList,
   binList
 }
 
+export const DEFAULT_OPTS = {}
+
 export default class PrelightService implements IService {
-  constructor(opts: IServiceOpts) {
+  opts: IServiceOpts
+  constructor(opts: IAny): IService {
+    this.opts = this.constructor.resolveOpts(opts)
     return this
   }
 
@@ -24,6 +30,10 @@ export default class PrelightService implements IService {
 
   getCardInfo(pan: string): Promise<?ICardInfo> {
     return new Promise(resolve => resolve(null))
+  }
+
+  static resolveOpts(raw: IAny): IServiceOpts {
+    return Object.assign({}, DEFAULT_OPTS, raw)
   }
 }
 

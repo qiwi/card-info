@@ -1,4 +1,4 @@
-import transport from '../src/transport'
+import transport from '../../src/assets/transport'
 
 describe('transport', () => {
   beforeEach(fetch.resetMocks)

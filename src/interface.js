@@ -20,8 +20,9 @@ export type IBinDefinition = {
 export type ICardInfo = {}
 export type IPaymentSystem = string
 
-export type IServiceOpts = Object
+export type IServiceOpts = {}
 export interface IService {
+  opts: IServiceOpts;
   constructor(IServiceOpts): IService;
   getPaymentSystem(pan: string): Promise<?IPaymentSystem>;
   getCardInfo(pan: string): Promise<?ICardInfo>;
