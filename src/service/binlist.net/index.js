@@ -11,7 +11,7 @@ export const DEFAULT_OPTS = {
   url: URL
 }
 
-class Binlist extends AbstractService implements IService {
+class BinlistService extends AbstractService implements IService {
   opts: IServiceOpts
   $key: IServiceKeys
   $value: any

@@ -16,8 +16,12 @@ describe('validateChecksum', () => {
     expect(validateChecksum('4111111111111112', LUHN)).toBeFalsy()
   })
 
-  it('returns true by default', () => {
+  it('returns true if alg param is empty', () => {
     expect(validateChecksum('4111111111111112')).toBeTruthy()
-    expect(validateChecksum('4111111111111112', 'FOO')).toBeTruthy()
+    expect(validateChecksum('4111111111111112', null)).toBeTruthy()
+  })
+
+  it('returns false otherwise', () => {
+    expect(validateChecksum('4111111111111112', 'Foo')).toBeFalsy()
   })
 })

@@ -13,7 +13,11 @@ export function validateChecksum (value: string, algorithm: string): boolean {
     case LUHN:
       return luhn(value)
 
-    default:
+    case null:
+    case undefined:
       return true
+
+    default:
+      return false
   }
 }
