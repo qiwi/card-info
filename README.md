@@ -21,7 +21,7 @@ By default card-info uses native `Promise` and `fetch`. You may replace them wit
     import axios from 'axios'
     
     cardInfo.Promise = bluebird
-    cardInfo.transport = axios
+    cardInfo.transport = axios // polyfill, pull-fetch-iso, etc.
 ```
 
 ##### Services may be composed

@@ -7,7 +7,7 @@ describe('assets/transport', () => {
     const data = JSON.stringify({foo: 'bar'})
     fetch.mockResponseOnce(data)
 
-    transport.get('https://example.com')
+    transport({url: 'https://example.com'})
       .then(res => {
         expect(res.body).toEqual(data)
         done()

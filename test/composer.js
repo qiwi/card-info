@@ -41,7 +41,7 @@ describe('composer', () => {
       })
     })
 
-    it('returns null if there\'s next service', done => {
+    it('returns null if there\'s no next service', done => {
       const composed = composer(bar, bar)
 
       composed.getPaymentSystem().then(res => {

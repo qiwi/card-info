@@ -30,9 +30,11 @@ export interface IService {
   [key: IServiceKeys]: (pan: string) => Promise<?ICardInfo | ?IPaymentSystem>;
 }
 
-export type IHttpOpts = URL | Request | string
-export interface IHttpTransport {
-  get(opts: IHttpOpts): Promise<IAny>;
+export type IHttpOpts = URL & {
+  url: string
+}
+export type IHttpTransport = {
+  (opts: IHttpOpts): Promise<IAny>
 }
 
 export type IApiOpts = {
