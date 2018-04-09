@@ -1,6 +1,6 @@
 // @flow
 
-import type {ICardInfo, IService, IPaymentSystem, IServiceOpts, IAny, IServiceKeys} from '../../interface'
+import type {ICardInfo, IService, IPaymentSystem, IServiceOpts, IServiceKeys} from '../../interface'
 import AbstractService from '../abstract'
 import paymentSystemList from './paymentSystemList'
 import binList from './binList'
