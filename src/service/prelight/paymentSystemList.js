@@ -2,6 +2,7 @@
 
 import type {IPaymentSystemDefinitions} from '../../interface'
 import {LUHN} from '../../validator'
+import {CVV} from './const'
 
 const list: IPaymentSystemDefinitions = [{
   key: 'VISA',
@@ -9,9 +10,9 @@ const list: IPaymentSystemDefinitions = [{
   prefixPattern: /^4/,
   panPattern: /^4\d{15,18}$/,
   lengths: [16],
-  codeName: 'CVV',
+  codeName: CVV,
   codeLength: 3,
-  algorithm: LUHN
+  algorithm: LUHN,
 }]
 
 export default list

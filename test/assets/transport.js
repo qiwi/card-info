@@ -1,6 +1,6 @@
 import transport from '../../src/assets/transport'
 
-describe('transport', () => {
+describe('assets/transport', () => {
   beforeEach(fetch.resetMocks)
 
   it('exposes get method', done => {

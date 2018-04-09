@@ -20,12 +20,14 @@ export type IBinDefinition = {
 export type ICardInfo = {}
 export type IPaymentSystem = string
 
+export type IServiceKeys = 'getPaymentSystem' | 'getCardInfo'
 export type IServiceOpts = {}
 export interface IService {
   opts: IServiceOpts;
   constructor(IServiceOpts): IService;
   getPaymentSystem(pan: string): Promise<?IPaymentSystem>;
   getCardInfo(pan: string): Promise<?ICardInfo>;
+  [key: IServiceKeys]: (pan: string) => Promise<?ICardInfo | ?IPaymentSystem>;
 }
 
 export type IHttpOpts = URL | Request | string
