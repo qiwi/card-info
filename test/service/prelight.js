@@ -2,7 +2,7 @@ import Service, {paymentSystemList, binList} from '../../src/service/prelight'
 
 const service = new Service()
 
-describe('prelight service', () => {
+describe('service/prelight', () => {
   it('exposes payment systems list', () => {
     expect(paymentSystemList).toEqual(expect.any(Array))
   })
