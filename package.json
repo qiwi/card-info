@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/qiwi/common-formatters.git"
+    "url": "https://github.com/qiwi/card-info.git"
   },
   "keywords": [
     "card type",
@@ -85,6 +85,7 @@
       "it",
       "expect",
       "describe",
+      "afterAll",
       "beforeEach",
       "fetch"
     ],

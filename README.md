@@ -1,4 +1,11 @@
 # card-info
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
+[![buildStatus](https://img.shields.io/travis/qiwi/card-info.svg?maxAge=3600&branch=master)](https://travis-ci.org/qiwi/card-info)
+[![coverage](https://img.shields.io/coveralls/qiwi/card-info.svg?maxAge=3600)](https://coveralls.io/github/qiwi/card-info)
+[![dependencyStatus](https://img.shields.io/david/qiwi/card-info.svg?maxAge=3600)](https://david-dm.org/qiwi/card-info)
+[![devDependencyStatus](https://img.shields.io/david/dev/qiwi/card-info.svg?maxAge=3600)](https://david-dm.org/qiwi/card-info)
+[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/qiwi/card-info)
+
 Complex utility for getting card info by its PAN.
 Supported providers:
 * preservice (dumb checks on client-side)
