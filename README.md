@@ -1,8 +1,9 @@
-# card-info [RnD]
+# card-info
 Complex utility for getting card info by its PAN.
 Supported providers:
 * preservice (dumb checks on client-side)
 * binlist.net
+* `<CustomService>`
 
 
 #### Usage examples
@@ -16,7 +17,7 @@ Supported providers:
     service.getPaymentSystem('1234')                // Promise<null>
 ```
 
-##### Promise and transport customization
+##### `Promise` and `transport` customization
 By default card-info uses native `Promise` and `fetch`. You may replace them with any compatible api. For example, `Bluebird` and `Axios`
 ```javascript
     import cardInfo from '@qiwi/card-info'
@@ -27,23 +28,37 @@ By default card-info uses native `Promise` and `fetch`. You may replace them wit
     cardInfo.transport = axios // or any polyfill, pull-fetch-iso, etc.
 ```
 
-##### Services may be composed
+##### Service composition
 ```javascript
     import {composer} from '@qiwi/card-info'
     import {PreService, BinlistnetService} from '@qiwi/card-info/service'
+    
     const preService = new PreService()
     const binlistnetService = new BinlistnetService()
-
     const composed = compose(preService, binlistnetService)
     
-    composed.getPaymentSystem('5321 4012 3456 7890') // 'Mastercard'
+    composed.getPaymentSystem('5321 4012 3456 7890')  // 'Mastercard'
     composed.getCardInfo('5321 4012 3456 7890')       // if preService returns null, the request would be processed with binlist.net backend
 ```
 
-#### What's `PreService`
+##### `CustomService`
+Composer supports any impl of [IService](./src/interface.js), so you're let to create your own class.
+```javascript
+    import AbstractService from '@qiwi/card-info/service/abstract'
+
+    class CustomService extends AbstractService implements IService {
+        getPaymentSystem(pan: string): Promise<?IPaymentSystem> {
+            // ...
+        }
+        getCardInfo(pan: string): Promise<?ICardInfo> {
+            // ...
+        }
+    }
+```
+
+##### What's `PreService`
 It's client-side implementation of service. The mostly used paysystems and bins are `hardcoded` for performance purposes.
 
 
-##### Known alternatives
-
+##### Alternatives
 * [braintree/credit-card-type](https://github.com/braintree/credit-card-type)
