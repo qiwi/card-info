@@ -1,15 +1,15 @@
-import BinlistService from '../../src/service/binlist.net'
+import BinlistnetService from '../../src/service/binlist.net'
 
 const {
   performRequest,
   formatCardInfo,
   formatPaymentSystem,
   DEFAULT_OPTS
-} = BinlistService
+} = BinlistnetService
 
 describe('service/binlistnet', () => {
   describe('proto', () => {
-    const service = new BinlistService()
+    const service = new BinlistnetService()
     const response = {
       number: {},
       scheme: 'visa',
@@ -72,7 +72,7 @@ describe('service/binlistnet', () => {
     })
 
     describe('performRequest', () => {
-      const request = performRequest.bind(BinlistService)
+      const request = performRequest.bind(BinlistnetService)
 
       it('returns formatted response', done => {
         const data = 'foo'

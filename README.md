@@ -3,23 +3,20 @@ Complex utility for getting card info by its PAN.
 Supported providers:
 * preservice (dumb checks on client-side)
 * binlist.net
-* freebinchecker.com
-* <NDA>
-* <Custom>
 
 
 #### Usage examples
 
 ```javascript
-    import BinlistService from '@qiwi/card-info/service/binlistnet'
-    const service = new BinlistService({...})
+    import BinlistnetService from '@qiwi/card-info/service/binlistnet'
+    const service = new BinlistnetService({...})
 
 
     service.getPaymentSystem('4111111111111111')    // Promise<'Visa'>
     service.getPaymentSystem('1234')                // Promise<'null>
 ```
 
-##### Promise & transport customisation
+##### Promise and transport customization
 By default card-info uses native `Promise` and `fetch`. You may replace them with any compatible api. For example, `Bluebird` and `Axios`
 ```javascript
     import cardInfo from '@qiwi/card-info'
@@ -32,17 +29,18 @@ By default card-info uses native `Promise` and `fetch`. You may replace them wit
 
 ##### Services may be composed
 ```javascript
-    import {PrelightSevice, BinlistSevice} from '@qiwi/card-info'
-    const prelightService = new PrelightSevice()
-    const binlistService = new BinlistSevice()
+    import {composer} from '@qiwi/card-info'
+    import {PreService, BinlistnetService} from '@qiwi/card-info/service'
+    const preService = new PreService()
+    const binlistnetService = new BinlistnetService()
 
-    const api = new Api(prelightService, binlistService)
+    const composed = compose(preService, binlistnetService)
     
-    api.getPaymentSystem('5321 4012 3456 7890') // 'Mastercard'
-    api.getBinInfo('5321 4012 3456 7890')       // if prelight returns null, the request would be processed with binlist.net backend
+    composed.getPaymentSystem('5321 4012 3456 7890') // 'Mastercard'
+    composed.getCardInfo('5321 4012 3456 7890')       // if preService returns null, the request would be processed with binlist.net backend
 ```
 
-#### What's `PrelightService`
+#### What's `PreService`
 It's client-side implementation of service. The mostly used paysystems and bins are `hardcoded` for performance purposes.
 
 

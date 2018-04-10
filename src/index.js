@@ -1,15 +1,8 @@
 // @flow
 
-export function getPaymentSystem (value: string, ...targetTypes: Array<string>): ?string {
-  return null
-}
+import composer from './composer'
+import assets from './assets'
 
-/*
-export function getCardInfo (value: string): Promise<Object> {
-  return new Promise(() => {})
-}
+export {composer}
 
-export function getBinInfo (value: string): Promise<Object> {
-  return new Promise(() => {})
-}
-*/
+export default assets

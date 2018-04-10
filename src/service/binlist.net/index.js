@@ -42,7 +42,7 @@ export type IBinlistResponse = {
   }
 }
 
-export default class BinlistService extends AbstractService implements IService {
+export default class BinlistnetService extends AbstractService implements IService {
   opts: IServiceOpts
   $key: IServiceKeys
   $value: any
