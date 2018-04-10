@@ -1,8 +1,8 @@
-import Service, {paymentSystemList, binList} from '../../src/service/prelight'
+import Service, {paymentSystemList, binList} from '../../src/service/preservice'
 
 const service = new Service()
 
-describe('service/prelight', () => {
+describe('service/preservice', () => {
   it('exposes payment systems list', () => {
     expect(paymentSystemList).toEqual(expect.any(Array))
   })

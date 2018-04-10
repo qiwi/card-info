@@ -1,16 +1,22 @@
 # card-info
 Complex utility for getting card info by its PAN.
+Supported providers:
+* preservice (dumb checks on client-side)
+* binlist.net
+* freebinchecker.com
+* <NDA>
+* <Custom>
 
 
 #### Usage examples
 
 ```javascript
-    import cardInfo, {Api} from '@qiwi/card-info'
-    const api = new Api('binlist.net')
+    import BinlistService from '@qiwi/card-info/service/binlistnet'
+    const service = new BinlistService({...})
 
 
-    api.getPaymentSystem('4111111111111111')    // 'Visa'
-    api.getPaymentSystem('1234')                // null
+    service.getPaymentSystem('4111111111111111')    // Promise<'Visa'>
+    service.getPaymentSystem('1234')                // Promise<'null>
 ```
 
 ##### Promise & transport customisation
@@ -21,7 +27,7 @@ By default card-info uses native `Promise` and `fetch`. You may replace them wit
     import axios from 'axios'
     
     cardInfo.Promise = bluebird
-    cardInfo.transport = axios // polyfill, pull-fetch-iso, etc.
+    cardInfo.transport = axios // or any polyfill, pull-fetch-iso, etc.
 ```
 
 ##### Services may be composed

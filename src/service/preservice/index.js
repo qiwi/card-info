@@ -14,7 +14,7 @@ export {
 
 export const DEFAULT_OPTS = {}
 
-export default class PrelightService extends AbstractService implements IService {
+export default class PreService extends AbstractService implements IService {
   opts: IServiceOpts
   $key: IServiceKeys
   $value: any
