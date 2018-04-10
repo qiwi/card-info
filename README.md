@@ -1,4 +1,4 @@
-# card-info
+# card-info [RnD]
 Complex utility for getting card info by its PAN.
 Supported providers:
 * preservice (dumb checks on client-side)
@@ -13,7 +13,7 @@ Supported providers:
 
 
     service.getPaymentSystem('4111111111111111')    // Promise<'Visa'>
-    service.getPaymentSystem('1234')                // Promise<'null>
+    service.getPaymentSystem('1234')                // Promise<null>
 ```
 
 ##### Promise and transport customization
@@ -44,6 +44,6 @@ By default card-info uses native `Promise` and `fetch`. You may replace them wit
 It's client-side implementation of service. The mostly used paysystems and bins are `hardcoded` for performance purposes.
 
 
-##### Alternatives
+##### Known alternatives
 
 * [braintree/credit-card-type](https://github.com/braintree/credit-card-type)

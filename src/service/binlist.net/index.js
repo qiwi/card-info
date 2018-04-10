@@ -12,8 +12,6 @@ import type {
 import AbstractService from '../abstract'
 import assets from '../../assets'
 
-const {transport} = assets
-
 export const URL = 'https://lookup.binlist.net'
 export const DEFAULT_OPTS: IServiceOpts = {
   url: URL,
@@ -68,7 +66,7 @@ export default class BinlistnetService extends AbstractService implements IServi
     const headers = opts.headers
     const skipError = opts.skipError
 
-    return transport({
+    return assets.transport({
       url,
       headers
     })

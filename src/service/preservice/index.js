@@ -1,11 +1,17 @@
 // @flow
 
-import type {ICardInfo, IService, IPaymentSystem, IServiceOpts, IServiceKeys} from '../../interface'
+import type {
+  ICardInfo,
+  IService,
+  IPaymentSystem,
+  IServiceOpts,
+  IServiceKeys
+} from '../../interface'
+
+import assets from '../../assets'
 import AbstractService from '../abstract'
 import paymentSystemList from './paymentSystemList'
 import binList from './binList'
-
-import Promise from '../../assets/promise'
 
 export {
   paymentSystemList,
@@ -20,7 +26,7 @@ export default class PreService extends AbstractService implements IService {
   $value: any
 
   getPaymentSystem(pan: string): Promise<?IPaymentSystem> {
-    return new Promise(resolve => {
+    return new assets.Promise(resolve => {
       const found = paymentSystemList.find(({prefixPattern}) => prefixPattern.test(pan))
 
       resolve(found ? found.key : null)
@@ -28,7 +34,7 @@ export default class PreService extends AbstractService implements IService {
   }
 
   getCardInfo(pan: string): Promise<?ICardInfo> {
-    return new Promise(resolve => resolve(null))
+    return new assets.Promise(resolve => resolve(null))
   }
 
   static DEFAULT_OPTS: Object = DEFAULT_OPTS
