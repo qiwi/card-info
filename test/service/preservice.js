@@ -33,7 +33,7 @@ describe('service/preservice', () => {
     })
 
     describe('getCardInfo', () => {
-      it('returns null otherwise', done => {
+      it('always returns Promise<null>', done => {
         service.getCardInfo('0101010101010101010101')
           .then(key => {
             expect(key).toBeNull()

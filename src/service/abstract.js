@@ -25,6 +25,14 @@ export default class AbstractService {
   }
 
   static resolveOpts (raw: IAny): IServiceOpts {
-    return Object.assign({}, this.constructor.DEFAULT_OPTS, raw)
+    return Object.assign({}, this.DEFAULT_OPTS, raw)
   }
+
+  static normalizePaymentSystem (value: string): string | null {
+    return typeof value === 'string'
+      ? value.toUpperCase()
+      : null
+  }
+
+  static DEFAULT_OPTS: Object = {}
 }

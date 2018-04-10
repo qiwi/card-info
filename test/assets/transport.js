@@ -3,7 +3,7 @@ import transport from '../../src/assets/transport'
 describe('assets/transport', () => {
   beforeEach(fetch.resetMocks)
 
-  it('exposes get method', done => {
+  it('exposes standard api', done => {
     const data = JSON.stringify({foo: 'bar'})
     fetch.mockResponseOnce(data)
 
