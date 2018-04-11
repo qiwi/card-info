@@ -6,8 +6,9 @@ export type IPaymentSystemDefinition = {
   key: string;
   name: {
     short?: string;
-    full: string;
+    nice: string;
     aliases?: string[];
+    org?: string;
   };
   pan: {
     pattern: RegExp;

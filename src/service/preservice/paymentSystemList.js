@@ -12,7 +12,12 @@
 
 import type {IPaymentSystemDefinitions} from '../../interface'
 import {LUHN} from '../../validator'
-import {CVV, CVC, CVN, CVP, CID} from './const'
+
+export const CVV = 'CVV'  // Card verification value
+export const CVP = 'CVP'  // Card verification parameter
+export const CVC = 'CVC'  // Card verification code
+export const CVN = 'CVN'  // Card verification number
+export const CID = 'CID'  // Card identification
 
 export const VISA = 'VISA'
 export const MASTERCARD = 'MASTERCARD'
@@ -29,7 +34,8 @@ const list: IPaymentSystemDefinitions = [
     key: VISA,
     name: {
       short: 'visa',
-      full: 'Visa'
+      nice: 'Visa',
+      org: 'Visa Inc.'
     },
     pan: {
       prefixPattern: /^4/,
@@ -46,8 +52,9 @@ const list: IPaymentSystemDefinitions = [
     key: MASTERCARD,
     name: {
       short: 'mastercard',
-      full: 'Mastercard',
-      aliases: ['mc', 'mcms', 'master-card']
+      nice: 'Mastercard',
+      aliases: ['mc', 'mcms', 'master-card'],
+      org: 'Mastercard Inc.'
     },
     pan: {
       pattern: /^(5[1-5]|222[1-9]|22[3-9]|2[3-6]|27[0-1]|2720)\d*$/,
@@ -59,11 +66,13 @@ const list: IPaymentSystemDefinitions = [
       name: CVC,
       length: 3,
     },
-  }, {
+  },
+  {
     key: AMERICAN_EXPRESS,
     name: {
       short: 'amex',
-      full: 'American Express'
+      nice: 'American Express',
+      org: 'American Express Company'
     },
     pan: {
       prefixPattern: /^(3|34|37)$/,
@@ -80,7 +89,7 @@ const list: IPaymentSystemDefinitions = [
     key: DINERS_CLUB,
     name: {
       short: 'dinersclub',
-      full: 'Diners Club',
+      nice: 'Diners Club',
     },
     pan: {
       prefixPattern: /^(3|3[0689]|30[0-5])$/,
@@ -97,7 +106,7 @@ const list: IPaymentSystemDefinitions = [
     key: DISCOVER,
     name: {
       short: 'discover',
-      full: 'Discover',
+      nice: 'Discover',
     },
     pan: {
       prefixPattern: /^(6|60|601|6011|65|64|64[4-9])$/,
@@ -114,7 +123,7 @@ const list: IPaymentSystemDefinitions = [
     key: JCB,
     name: {
       short: 'jcb',
-      full: 'JCB',
+      nice: 'JCB',
       aliases: ['Japan Credit Bureau']
     },
     pan: {
@@ -132,7 +141,7 @@ const list: IPaymentSystemDefinitions = [
     key: UNIONPAY,
     name: {
       short: 'unionpay',
-      full: 'UnionPay',
+      nice: 'UnionPay',
     },
     pan: {
       prefixPattern: /^((6|62|62\d|(621(?!83|88|98|99))|622(?!06)|627[02,06,07]|628(?!0|1)|629[1,2])|622018)$/,
@@ -149,7 +158,7 @@ const list: IPaymentSystemDefinitions = [
     key: MAESTRO,
     name: {
       short: 'maestro',
-      full: 'Maestro',
+      nice: 'Maestro',
     },
     pan: {
       prefixPattern: /^(5|5[06-9]|6\d*)$/,
@@ -167,7 +176,7 @@ const list: IPaymentSystemDefinitions = [
     key: MIR,
     name: {
       short: 'mir',
-      full: 'Mir',
+      nice: 'Mir',
     },
     pan: {
       prefixPattern: /^(2|22|220|220[0-4])$/,
