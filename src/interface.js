@@ -4,13 +4,21 @@ export type IAny = any
 
 export type IPaymentSystemDefinition = {
   key: string;
-  name: string;
-  prefixPattern: RegExp;
-  panPattern: RegExp;
-  lengths: number[];
-  codeName: string;
-  codeLength: number;
-  algorithm?: string;
+  name: {
+    short?: string;
+    full: string;
+    aliases?: string[];
+  };
+  pan: {
+    pattern: RegExp;
+    prefixPattern: RegExp;
+    lengths: number[];
+    algorithm?: string;
+  };
+  code: {
+    name: string;
+    length: number;
+  }
 }
 export type IPaymentSystemDefinitions = IPaymentSystemDefinition[]
 
