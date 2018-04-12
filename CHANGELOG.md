@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/qiwi/card-info/compare/v0.1.0...v0.2.0) (2018-04-12)
+
+
+### Features
+
+* **preservice:** add paysys defs for mastercard, amex, mir, maestro, etc. ([c7fc2e3](https://github.com/qiwi/card-info/commit/c7fc2e3))
+* add `org` field to paysys definition ([dfa52ae](https://github.com/qiwi/card-info/commit/dfa52ae))
+
+
+
 <a name="0.1.0"></a>
 # 0.1.0 (2018-04-10)
 
