@@ -47,11 +47,12 @@ By default card-info uses native `Promise` and `fetch`. You may replace them wit
 ```
 
 #### Service configuration
-Each service implementation has own supported opts list, but there is a common part:
-| Option        | Default  | Description                                                          |
-|---------------|----------|----------------------------------------------------------------------|
-| skipError     | true     | means, that any fetch exception would be converted to null response  |
-| url           | string   | endpoint url                                                         |
+Each service implementation has own supported opts list, but there is a common part:  
+
+| Option        | Default       | Description                                                          |
+| ------------- | ------------- | -------------------------------------------------------------------- |
+| skipError     | true          | means, that any fetch exception would be converted to null response  |
+| url           | string        | endpoint url                                                         |
 
 ##### Service composition
 ```javascript
