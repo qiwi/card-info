@@ -13,10 +13,28 @@ describe('service/preservice', () => {
 
   describe('proto', () => {
     describe('getPaymentSystem', () => {
-      it('resolves pay sys id by pan', done => {
-        service.getPaymentSystem('4111111111111111')
+      it('resolves paysys by prefix', done => {
+        service.getPaymentSystem('4')
           .then(key => {
             expect(key).toEqual('VISA')
+            done()
+          })
+          .catch()
+      })
+
+      it('resolves paysys by full pattern', done => {
+        service.getPaymentSystem('22049')
+          .then(key => {
+            expect(key).toEqual('MIR')
+            done()
+          })
+          .catch()
+      })
+
+      it('returns null if found more than one match', done => {
+        service.getPaymentSystem('2')
+          .then(key => {
+            expect(key).toBeNull()
             done()
           })
           .catch()

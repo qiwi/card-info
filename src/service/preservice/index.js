@@ -27,9 +27,12 @@ export default class PreService extends AbstractService implements IService {
 
   getPaymentSystem(pan: string): Promise<?IPaymentSystem> {
     return new assets.Promise(resolve => {
-      const found = paymentSystemList.find(({pan: {prefixPattern}}) => prefixPattern.test(pan))
+      const found = paymentSystemList.filter(({pan: {prefixPattern, pattern}}) => prefixPattern.test(pan) || pattern.test(pan))
+      const res = found.length === 1
+        ? found[0].key
+        : null
 
-      resolve(found ? found.key : null)
+      resolve(res)
     })
   }
 
