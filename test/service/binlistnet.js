@@ -23,7 +23,7 @@ describe('service/binlistnet', () => {
         longitude: -97
       },
       bank: {
-        name: 'JPRGAN CHASE BANK, N.A.',
+        name: 'JPMORGAN CHASE BANK, N.A.',
         url: 'www.jpmorganchase.com',
         phone: '416-981-9200'
       }

@@ -12,6 +12,17 @@ Supported providers:
 * binlist.net
 * `<CustomService>`
 
+#### Glossary
+* BIN/INN — The first six digits of a card number (including the initial [MII digit](https://en.wikipedia.org/wiki/ISO/IEC_7812)) are known as the [issuer identification number](https://en.wikipedia.org/wiki/Payment_card_number#Issuer_identification_number_(IIN))
+* PAN — primary account number
+
+#### Install
+```bash
+    npm i @qiwi/card-info
+```
+```bash
+    yarn add @qiwi/card-info
+```
 
 #### Usage examples
 
@@ -34,6 +45,13 @@ By default card-info uses native `Promise` and `fetch`. You may replace them wit
     cardInfo.Promise = bluebird
     cardInfo.transport = axios // or any polyfill, pull-fetch-iso, etc.
 ```
+
+#### Service configuration
+Each service implementation has own supported opts list, but there is a common part:
+| Option        | Default  | Description                                                          |
+|---------------|----------|----------------------------------------------------------------------|
+| skipError     | true     | means, that any fetch exception would be converted to null response  |
+| url           | string   | endpoint url                                                         |
 
 ##### Service composition
 ```javascript
@@ -69,3 +87,4 @@ It's client-side implementation of service. The mostly used paysystems and bins 
 
 ##### Alternatives
 * [braintree/credit-card-type](https://github.com/braintree/credit-card-type)
+* [paylike/binlookup](https://github.com/paylike/binlookup)
