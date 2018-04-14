@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/qiwi/card-info/compare/v0.2.0...v0.3.0) (2018-04-14)
+
+
+### Bug Fixes
+
+* **preservice:** getPaySys must return the only match ([b5b8f34](https://github.com/qiwi/card-info/commit/b5b8f34))
+
+
+### Features
+
+* add cardInfo response contract ([bc2702e](https://github.com/qiwi/card-info/commit/bc2702e))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/qiwi/card-info/compare/v0.1.0...v0.2.0) (2018-04-12)
 
