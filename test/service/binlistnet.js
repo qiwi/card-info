@@ -11,7 +11,10 @@ describe('service/binlistnet', () => {
   describe('proto', () => {
     const service = new BinlistnetService()
     const response = {
-      number: {},
+      number: {
+        length: 16,
+        luhn: true
+      },
       scheme: 'visa',
       country: {
         numeric: '840',
@@ -43,7 +46,37 @@ describe('service/binlistnet', () => {
         const data = JSON.stringify({})
 
         fetch.mockResponseOnce(data)
-        service.getPaymentSystem('4111111')
+        service.getPaymentSystem('111111')
+          .then(res => {
+            expect(res).toBeNull()
+            done()
+          })
+      })
+    })
+
+    describe('getCardInfo', () => {
+      it('returns proper info', done => {
+        fetch.mockResponseOnce(JSON.stringify(response))
+        service.getCardInfo('4111111')
+          .then(res => {
+            expect(res).toEqual({
+              issuer: {
+                country: 'US',
+                name: 'JPMORGAN CHASE BANK, N.A.',
+                phone: '416-981-9200',
+                url: 'www.jpmorganchase.com'
+              },
+              paymentSystem: 'VISA'
+            })
+            done()
+          })
+      })
+
+      it('returns null for unknown', done => {
+        const data = JSON.stringify({})
+
+        fetch.mockResponseOnce(data)
+        service.getCardInfo('1111111')
           .then(res => {
             expect(res).toBeNull()
             done()
@@ -58,10 +91,12 @@ describe('service/binlistnet', () => {
     })
 
     describe('formatCardInfo', () => {
-      it('returns value as is', () => {
+      it('returns proper value', () => {
         const res = {number: {}, scheme: 'visa'}
 
-        expect(formatCardInfo(res)).toEqual(res)
+        expect(formatCardInfo(res)).toEqual({
+          paymentSystem: 'VISA'
+        })
       })
     })
 

@@ -26,7 +26,21 @@ export type IPaymentSystemDefinitions = IPaymentSystemDefinition[]
 export type IBinDefinition = {
 }
 
-export type ICardInfo = Object
+export type ICardInfo = {
+  paymentSystem: string;
+  valid?: boolean;
+  type?: string;
+  brand?: string;
+  category?: string;
+  issuer?: {
+    name?: string;
+    country?: string;
+    address?: string;
+    url?: string;
+    phone?: string;
+    svg?: string;
+  }
+}
 export type IPaymentSystem = string
 
 export type IServiceKeys = 'getPaymentSystem' | 'getCardInfo'

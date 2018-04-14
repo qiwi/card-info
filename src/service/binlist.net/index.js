@@ -11,6 +11,7 @@ import type {
 } from '../../interface'
 import AbstractService from '../abstract'
 import assets from '../../assets'
+import {clearEmptyFields} from '../../assets/util'
 
 export const URL = 'https://lookup.binlist.net'
 export const DEFAULT_OPTS: IServiceOpts = {
@@ -22,9 +23,11 @@ export const DEFAULT_OPTS: IServiceOpts = {
 }
 
 export type IBinlistResponse = {
-  number: Object,
+  number: ?Object,
   scheme: string,
-  country: {
+  brand: ?string,
+  type: ?string,
+  country: ?{
     numeric: string,
     alpha2: string,
     name: string,
@@ -33,7 +36,7 @@ export type IBinlistResponse = {
     latitude: number,
     longitude: number
   },
-  bank: {
+  bank: ?{
     name: string,
     url: string,
     phone: string
@@ -53,8 +56,26 @@ export default class BinlistnetService extends AbstractService implements IServi
     return this.constructor.performRequest(pan, this.opts, this.constructor.formatCardInfo)
   }
 
-  static formatCardInfo (res: IBinlistResponse): ICardInfo {
-    return Object.assign({}, res)
+  static formatCardInfo (res: IBinlistResponse): ?ICardInfo {
+    const {bank, country} = res
+
+    if (!res.scheme) {
+      return null
+    }
+
+    return clearEmptyFields({
+      paymentSystem: AbstractService.normalizePaymentSystem(res.scheme),
+      type: res.type,
+      brand: res.brand,
+      issuer: bank && country
+        ? {
+          country: country.alpha2,
+          name: bank.name,
+          url: bank.url,
+          phone: bank.phone
+        }
+        : null
+    })
   }
 
   static formatPaymentSystem (res: IBinlistResponse): ?IPaymentSystem {
