@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/qiwi/card-info/compare/v0.3.0...v0.4.0) (2018-04-16)
+
+
+### Features
+
+* pass additional transport props from service to api layer ([a49beb6](https://github.com/qiwi/card-info/commit/a49beb6))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/qiwi/card-info/compare/v0.2.0...v0.3.0) (2018-04-14)
 
