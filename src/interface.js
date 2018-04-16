@@ -47,6 +47,7 @@ export type IServiceKeys = 'getPaymentSystem' | 'getCardInfo'
 export type IServiceOpts = {
   url? :string;
   headers?: IAny;
+  transport?: IAny;
   skipError?: boolean;
 }
 export interface IService {
@@ -57,7 +58,7 @@ export interface IService {
   [key: IServiceKeys]: (pan: string) => Promise<?ICardInfo | ?IPaymentSystem>;
 }
 
-export interface IResponse {
+export interface IServiceResponse {
   json(): IAny
 }
 
@@ -66,13 +67,4 @@ export type IHttpOpts = {
 } & RequestOptions;
 export type IHttpTransport = {
   (opts: IHttpOpts): Promise<IAny>
-}
-
-export type IApiOpts = {
-  type?: string;
-  transport?: IHttpTransport;
-}
-export interface IApi extends IService {
-  constructor(opts: IApiOpts): IApi;
-  service: IService;
 }

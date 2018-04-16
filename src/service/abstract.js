@@ -1,6 +1,15 @@
 // @flow
 
-import type {IAny, IServiceKeys, IServiceOpts} from '../interface'
+import type {
+  IAny,
+  ICardInfo,
+  IPaymentSystem,
+  IServiceKeys,
+  IServiceOpts,
+  IServiceResponse
+} from '../interface'
+
+import assets from '../assets'
 
 export default class AbstractService {
   opts: IServiceOpts
@@ -32,6 +41,32 @@ export default class AbstractService {
     return typeof value === 'string'
       ? value.toUpperCase()
       : null
+  }
+
+  static performRequest (pan: string, opts: IServiceOpts, formatter: (res: IAny) => ?ICardInfo | ?IPaymentSystem): Promise<IAny> {
+    const url = `${opts.url || ''}/${pan}`
+    const {transport, headers, skipError} = opts
+
+    return assets.transport({
+      ...transport,
+      url,
+      headers
+    })
+      .then(this.parseResponse)
+      .then(formatter)
+      .catch((err: IAny) => {
+        if (!skipError) {
+          throw err
+        }
+
+        return null
+      })
+  }
+
+  static parseResponse (res: IServiceResponse): IAny {
+    return res && typeof res.json === 'function'
+      ? res.json()
+      : res
   }
 
   static DEFAULT_OPTS: Object = {}

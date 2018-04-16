@@ -1,7 +1,6 @@
 import BinlistnetService from '../../src/service/binlist.net'
 
 const {
-  performRequest,
   formatCardInfo,
   formatPaymentSystem,
   DEFAULT_OPTS
@@ -103,53 +102,6 @@ describe('service/binlistnet', () => {
     describe('formatPaymentSystem', () => {
       it('returns paySys id from response', () => {
         expect(formatPaymentSystem({number: {}, scheme: 'visa'})).toEqual('VISA')
-      })
-    })
-
-    describe('performRequest', () => {
-      const request = performRequest.bind(BinlistnetService)
-
-      it('returns formatted response', done => {
-        const data = 'foo'
-        const formatter = data => data.toUpperCase()
-        const opts = {}
-
-        fetch.mockResponseOnce(JSON.stringify(data))
-        request(data, opts, formatter)
-          .then(res => {
-            expect(res).toBe(formatter(data))
-            done()
-          })
-      })
-
-      it('returns null on error (skipError = true)', done => {
-        const data = 'foo'
-        const formatter = data => data.toUpperCase()
-        const opts = {
-          skipError: true
-        }
-        fetch.mockRejectOnce(new Error('failed'))
-
-        request(data, opts, formatter)
-          .then(res => {
-            expect(res).toBeNull()
-            done()
-          })
-      })
-
-      it('throws exception on error (skipError = false)', done => {
-        const data = 'foo'
-        const formatter = data => data.toUpperCase()
-        const opts = {
-          skipError: false
-        }
-        fetch.mockRejectOnce(new Error('failed'))
-
-        request(data, opts, formatter)
-          .catch(err => {
-            expect(err.message).toBe('failed')
-            done()
-          })
       })
     })
   })

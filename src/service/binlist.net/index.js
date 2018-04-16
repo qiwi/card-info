@@ -6,7 +6,7 @@ import type {
   IService,
   IServiceKeys,
   IServiceOpts,
-  IResponse,
+  IServiceResponse,
   ICardInfo
 } from '../../interface'
 import AbstractService from '../abstract'
@@ -49,11 +49,11 @@ export default class BinlistnetService extends AbstractService implements IServi
   $value: any
 
   getPaymentSystem(pan: string): Promise<?IPaymentSystem> {
-    return this.constructor.performRequest(pan, this.opts, this.constructor.formatPaymentSystem)
+    return AbstractService.performRequest(pan, this.opts, this.constructor.formatPaymentSystem)
   }
 
   getCardInfo(pan: string): Promise<?ICardInfo> {
-    return this.constructor.performRequest(pan, this.opts, this.constructor.formatCardInfo)
+    return AbstractService.performRequest(pan, this.opts, this.constructor.formatCardInfo)
   }
 
   static formatCardInfo (res: IBinlistResponse): ?ICardInfo {
@@ -80,30 +80,6 @@ export default class BinlistnetService extends AbstractService implements IServi
 
   static formatPaymentSystem (res: IBinlistResponse): ?IPaymentSystem {
     return AbstractService.normalizePaymentSystem(res.scheme)
-  }
-
-  static performRequest(pan: string, opts: IServiceOpts, formatter: (res: IBinlistResponse) => ?ICardInfo | ?IPaymentSystem): Promise<IAny> {
-    const url = `${opts.url || ''}/${pan}`
-    const headers = opts.headers
-    const skipError = opts.skipError
-
-    return assets.transport({
-      url,
-      headers
-    })
-      .then(this.parseResponse)
-      .then(formatter)
-      .catch((err: IAny) => {
-        if (!skipError) {
-          throw err
-        }
-
-        return null
-      })
-  }
-
-  static parseResponse(res: IResponse): IAny {
-    return res.json()
   }
 
   static DEFAULT_OPTS: IServiceOpts = DEFAULT_OPTS
