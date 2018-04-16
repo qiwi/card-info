@@ -110,6 +110,36 @@ describe('service/abstract', () => {
             done()
           })
       })
+
+      it('properly passes service transport opts to api', done => {
+        const url = 'https://example.com'
+        const headers = {foo: 'bar'}
+        const DEFAULT_OPTS = {
+          url,
+          headers,
+          qux: 'quux'
+        }
+        class Service extends AbstractService {
+          static DEFAULT_OPTS = DEFAULT_OPTS
+        }
+        const data = 'foo'
+        const opts = {transport: {foo: 'bar'}}
+        const service = new Service(opts)
+        const formatter = res => res
+
+        fetch.once(JSON.stringify(data))
+
+        Service.performRequest(data, service.opts, formatter)
+          .then(() => {
+            expect(fetch).toHaveBeenCalledWith('https://example.com/foo',
+              {
+                foo: 'bar',
+                headers: {foo: 'bar'},
+                url: 'https://example.com/foo'
+              })
+            done()
+          })
+      })
     })
   })
 })

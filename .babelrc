@@ -4,6 +4,7 @@
     "@babel/preset-env"
   ],
   "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
     "transform-class-properties"
   ],
   "comments": false,
@@ -22,6 +23,7 @@
         "minify"
       ],
       "plugins": [
+        "@babel/plugin-proposal-object-rest-spread",
         "transform-class-properties"
       ]
     }
