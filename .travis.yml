@@ -5,4 +5,4 @@ install:
   - npm install
   - npm build
 script:
-  - npm run coveralls
+  - npm run test_with_push
