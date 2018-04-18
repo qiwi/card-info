@@ -5,7 +5,8 @@ class CustomService extends AbstractService {}
 const {
   normalizePaymentSystem,
   parseResponse,
-  performRequest
+  performRequest,
+  promiseNull
 } = AbstractService
 
 describe('service/abstract', () => {
@@ -18,8 +19,13 @@ describe('service/abstract', () => {
     const cases = ['getPaymentSystem', 'getCardInfo']
 
     cases.forEach(method => {
-      it(method + ' always throws an error', () => {
-        expect(() => service[method]('foo')).toThrow('not implemented')
+      it(method + ' returns Promise<null>', done => {
+        service[method]('foo')
+          .then(res => {
+            expect(res).toBeNull()
+            done()
+          })
+          .catch()
       })
     })
   })
@@ -139,6 +145,17 @@ describe('service/abstract', () => {
               })
             done()
           })
+      })
+    })
+
+    describe('promiseNull', () => {
+      it('returns Promise<null>', done => {
+        promiseNull()
+          .then(res => {
+            expect(res).toBeNull()
+            done()
+          })
+          .catch()
       })
     })
   })

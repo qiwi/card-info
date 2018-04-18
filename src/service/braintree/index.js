@@ -29,10 +29,6 @@ export default class BraintreeService extends AbstractService implements IServic
     })
   }
 
-  getCardInfo(pan: string): Promise<?ICardInfo> {
-    return new assets.Promise(resolve => resolve(null))
-  }
-
   static DEFAULT_OPTS: Object = DEFAULT_OPTS
 
   static creditCardType = creditCardType

@@ -36,10 +36,6 @@ export default class PreService extends AbstractService implements IService {
     })
   }
 
-  getCardInfo(pan: string): Promise<?ICardInfo> {
-    return new assets.Promise(resolve => resolve(null))
-  }
-
   static DEFAULT_OPTS: Object = DEFAULT_OPTS
 }
 

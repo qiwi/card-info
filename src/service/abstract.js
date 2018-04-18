@@ -25,12 +25,12 @@ export default class AbstractService {
     return this
   }
 
-  getCardInfo (pan: string) {
-    throw new Error('not implemented')
+  getCardInfo (pan: string): Promise<?ICardInfo> {
+    return this.constructor.promiseNull()
   }
 
-  getPaymentSystem (pan: string) {
-    throw new Error('not implemented')
+  getPaymentSystem (pan: string): Promise<?IPaymentSystem> {
+    return this.constructor.promiseNull()
   }
 
   static resolveOpts (raw: IAny): IServiceOpts {
@@ -67,6 +67,10 @@ export default class AbstractService {
     return res && typeof res.json === 'function'
       ? res.json()
       : res
+  }
+
+  static promiseNull (): Promise<null> {
+    return new assets.Promise(resolve => resolve(null))
   }
 
   static DEFAULT_OPTS: Object = {}
