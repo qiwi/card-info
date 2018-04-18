@@ -36,7 +36,7 @@
   "author": "Anton Golub <a.golub@qiwi.com>",
   "license": "MIT",
   "dependencies": {
-    "credit-card-type": "^6.2.0",
+    "credit-card-type": "^6.3.0",
     "luhn-alg": "^1.0.1"
   },
   "devDependencies": {
@@ -53,7 +53,7 @@
     "babel-preset-minify": "^0.4.0",
     "codeclimate-test-reporter": "^0.5.0",
     "coveralls": "^3.0.0",
-    "flow-bin": "^0.69.0",
+    "flow-bin": "^0.70.0",
     "flow-coverage-report": "^0.5.0",
     "flow-remove-types": "^1.2.3",
     "flow-typed": "^2.4.0",
