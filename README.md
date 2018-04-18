@@ -9,7 +9,8 @@
 Complex utility for getting card info by its PAN.
 Supported providers:
 * preservice (dumb checks on client-side)
-* binlist.net
+* [Binlist.net](https://binlist.net/)
+* [Braintree](https://github.com/braintree/credit-card-type)
 * `<CustomService>`
 
 #### Glossary
@@ -19,8 +20,6 @@ Supported providers:
 #### Install
 ```bash
     npm i @qiwi/card-info
-```
-```bash
     yarn add @qiwi/card-info
 ```
 
@@ -29,7 +28,6 @@ Supported providers:
 ```javascript
     import BinlistnetService from '@qiwi/card-info/service/binlistnet'
     const service = new BinlistnetService({...})
-
 
     service.getPaymentSystem('4111111111111111')    // Promise<'Visa'>
     service.getPaymentSystem('1234')                // Promise<null>
@@ -82,9 +80,35 @@ Composer supports any impl of [IService](./src/interface.js), so you're let to c
     }
 ```
 
+#### `Braintree`
+```javascript
+    import {BraintreeService} from '@qiwi/card-info/service'
+    const service = new BraintreeService({...})
+
+    service.getPaymentSystem('6759649826438453')    // Promise<'Maestro'>
+    service.getPaymentSystem('1234')                // Promise<null>
+```
+Braintree's `credit-card-type` lib is exposed as static property of the class, so you're able to use its API. For example, add custom definitions:
+```javascript
+    BraintreeService.creditCardType.addCard({
+        niceType: 'Foo',
+        type: 'foo',
+        prefixPattern: /^(12345)$/,
+        exactPattern: /^(12345)\d*$/,
+        gaps: [4, 8, 12],
+        lengths: [16],
+        code: {
+            name: 'CVV',
+            size: 3
+        }
+    })
+    const service = new BraintreeService()
+    
+    service.getPaymentSystem('1234567890123456')    // Promise<'FOO'>
+```
+
 ##### What's `PreService`
 It's client-side implementation of service. The mostly used paysystems and bins are `hardcoded` for performance purposes.
-
 
 ##### Alternatives
 * [braintree/credit-card-type](https://github.com/braintree/credit-card-type)

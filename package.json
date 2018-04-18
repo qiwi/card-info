@@ -7,6 +7,7 @@
     "jest": "jest -w 2",
     "lint": "standard-flow src/**/*.js test/**/*.js",
     "flow": "flow",
+    "fetch_flow_defs": "flow-typed install credit-card-type@6.x.x",
     "test": "npm run lint && npm run flow && npm run jest",
     "flow_coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",
     "build": "BABEL_ENV=production babel src --out-dir dist",
@@ -35,6 +36,7 @@
   "author": "Anton Golub <a.golub@qiwi.com>",
   "license": "MIT",
   "dependencies": {
+    "credit-card-type": "^6.2.0",
     "luhn-alg": "^1.0.1"
   },
   "devDependencies": {
@@ -54,6 +56,7 @@
     "flow-bin": "^0.69.0",
     "flow-coverage-report": "^0.5.0",
     "flow-remove-types": "^1.2.3",
+    "flow-typed": "^2.4.0",
     "jest": "^22.4.3",
     "jest-fetch-mock": "^1.5.0",
     "lodash": "^4.17.5",

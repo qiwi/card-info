@@ -1,9 +1,9 @@
-import {AbstractService, BinlistnetService, PreService} from '../../src/service'
+import {AbstractService, BinlistnetService, BraintreeService, PreService} from '../../src/service'
 
 describe('service/index', () => {
   it('exports inner classes', () => {
-    expect(AbstractService).toEqual(expect.any(Function))
-    expect(BinlistnetService).toEqual(expect.any(Function))
-    expect(PreService).toEqual(expect.any(Function))
+    const exposed = [AbstractService, BinlistnetService, BraintreeService, PreService]
+
+    exposed.forEach(constructor => expect(constructor).toEqual(expect.any(Function)))
   })
 })

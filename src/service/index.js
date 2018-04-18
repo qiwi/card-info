@@ -1,11 +1,13 @@
 // @flow
 
-import BinlistnetService from './binlist.net'
-import PreService from './preservice'
 import AbstractService from './abstract'
+import BinlistnetService from './binlist.net'
+import BraintreeService from './braintree'
+import PreService from './preservice'
 
 export {
+  AbstractService,
   BinlistnetService,
-  PreService,
-  AbstractService
+  BraintreeService,
+  PreService
 }

@@ -1,15 +1,7 @@
-import Service, {paymentSystemList, binList} from '../../src/service/preservice'
+import {BraintreeService} from '../../src/service'
 
-describe('service/preservice', () => {
-  const service = new Service()
-
-  it('exposes payment systems list', () => {
-    expect(paymentSystemList).toEqual(expect.any(Array))
-  })
-
-  it('exposes bin list', () => {
-    expect(binList).toEqual(expect.any(Array))
-  })
+describe('service/braintree', () => {
+  const service = new BraintreeService()
 
   describe('proto', () => {
     describe('getPaymentSystem', () => {
@@ -23,9 +15,9 @@ describe('service/preservice', () => {
       })
 
       it('resolves paysys by full pattern', done => {
-        service.getPaymentSystem('22049')
+        service.getPaymentSystem('54321')
           .then(key => {
-            expect(key).toEqual('MIR')
+            expect(key).toEqual('MASTER-CARD')
             done()
           })
           .catch()
@@ -33,15 +25,6 @@ describe('service/preservice', () => {
 
       it('returns null if found more than one match', done => {
         service.getPaymentSystem('2')
-          .then(key => {
-            expect(key).toBeNull()
-            done()
-          })
-          .catch()
-      })
-
-      it('promises null otherwise', done => {
-        service.getPaymentSystem('0101010101010101010101')
           .then(key => {
             expect(key).toBeNull()
             done()
@@ -63,11 +46,28 @@ describe('service/preservice', () => {
   })
 
   describe('static', () => {
-    it('resolveOpts', () => {
-      const CustomPromise = () => {}
-      const opts = Service.resolveOpts({Promise: CustomPromise})
+    describe('creditCardType', () => {
+      it('allows to add custom card', done => {
+        BraintreeService.creditCardType.addCard({
+          niceType: 'Foo',
+          type: 'foo',
+          prefixPattern: /^(12345)$/,
+          exactPattern: /^(12345)\d*$/,
+          gaps: [4, 8, 12],
+          lengths: [16],
+          code: {
+            name: 'CVV',
+            size: 3
+          }
+        })
 
-      expect(opts.Promise).toBe(CustomPromise)
+        service.getPaymentSystem('1234567890123456')
+          .then(key => {
+            expect(key).toEqual('FOO')
+            done()
+          })
+          .catch()
+      })
     })
   })
 })
