@@ -1,16 +1,13 @@
 // @flow
 
 import type {
-  IAny,
   IPaymentSystem,
   IService,
   IServiceKeys,
   IServiceOpts,
-  IServiceResponse,
   ICardInfo
 } from '../../interface'
 import AbstractService from '../abstract'
-import assets from '../../assets'
 import {clearEmptyFields} from '../../assets/util'
 
 export const URL = 'https://lookup.binlist.net'

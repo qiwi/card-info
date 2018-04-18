@@ -7,7 +7,6 @@ import type {
   IService,
   IServiceKeys,
   IServiceOpts,
-  ICardInfo
 } from '../../interface'
 import assets from '../../assets'
 

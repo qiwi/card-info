@@ -1,7 +1,6 @@
 // @flow
 
 import type {
-  ICardInfo,
   IService,
   IPaymentSystem,
   IServiceOpts,
