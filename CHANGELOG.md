@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/qiwi/card-info/compare/v0.4.0...v0.5.0) (2018-04-18)
+
+
+### Features
+
+* add braintree service ([0fa5860](https://github.com/qiwi/card-info/commit/0fa5860))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/qiwi/card-info/compare/v0.3.0...v0.4.0) (2018-04-16)
 
