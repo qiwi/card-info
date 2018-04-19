@@ -7,7 +7,7 @@ import type {
   IServiceOpts,
   ICardInfo
 } from '../../interface'
-import AbstractService from '../abstract'
+import {AbstractService, AbstractRemoteService} from '../abstract'
 import {clearEmptyFields} from '../../assets/util'
 
 export const URL = 'https://lookup.binlist.net'
@@ -40,18 +40,10 @@ export type IBinlistResponse = {
   }
 }
 
-export default class BinlistnetService extends AbstractService implements IService {
+export default class BinlistnetService extends AbstractRemoteService implements IService {
   opts: IServiceOpts
   $key: IServiceKeys
   $value: any
-
-  getPaymentSystem(pan: string): Promise<?IPaymentSystem> {
-    return AbstractService.performRequest(pan, this.opts, this.constructor.formatPaymentSystem)
-  }
-
-  getCardInfo(pan: string): Promise<?ICardInfo> {
-    return AbstractService.performRequest(pan, this.opts, this.constructor.formatCardInfo)
-  }
 
   static formatCardInfo (res: IBinlistResponse): ?ICardInfo {
     const {bank, country} = res

@@ -4,6 +4,7 @@ import type {
   IAny,
   ICardInfo,
   IPaymentSystem,
+  IService,
   IServiceKeys,
   IServiceOpts,
   IServiceResponse
@@ -11,7 +12,7 @@ import type {
 
 import assets from '../assets'
 
-export default class AbstractService {
+export class AbstractService {
   opts: IServiceOpts
   $key: IServiceKeys
   $value: any
@@ -75,3 +76,27 @@ export default class AbstractService {
 
   static DEFAULT_OPTS: Object = {}
 }
+
+export class AbstractRemoteService extends AbstractService implements IService {
+  opts: IServiceOpts
+  $key: IServiceKeys
+  $value: any
+
+  getPaymentSystem (pan: string): Promise<?IPaymentSystem> {
+    return AbstractService.performRequest(pan, this.opts, this.constructor.formatPaymentSystem.bind(this.constructor))
+  }
+
+  getCardInfo (pan: string): Promise<?ICardInfo> {
+    return AbstractService.performRequest(pan, this.opts, this.constructor.formatCardInfo.bind(this.constructor))
+  }
+
+  static formatPaymentSystem (res: IAny) {
+    return res
+  }
+
+  static formatCardInfo (res: IAny) {
+    return res
+  }
+}
+
+export default AbstractService

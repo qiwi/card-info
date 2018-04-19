@@ -7,7 +7,7 @@ import type {
   IServiceOpts,
   ICardInfo
 } from '../../interface'
-import AbstractService from '../abstract'
+import {AbstractRemoteService, AbstractService} from '../abstract'
 import {clearEmptyFields} from '../../assets/util'
 
 export const URL = 'https://api.freebinchecker.com/bin/'
@@ -39,18 +39,10 @@ export type IFreebincheckerResponse = {
   }
 }
 
-export default class FreebincheckerService extends AbstractService implements IService {
+export default class FreebincheckerService extends AbstractRemoteService implements IService {
   opts: IServiceOpts
   $key: IServiceKeys
   $value: any
-
-  getPaymentSystem(pan: string): Promise<?IPaymentSystem> {
-    return AbstractService.performRequest(pan, this.opts, this.constructor.formatPaymentSystem.bind(this.constructor))
-  }
-
-  getCardInfo(pan: string): Promise<?ICardInfo> {
-    return AbstractService.performRequest(pan, this.opts, this.constructor.formatCardInfo.bind(this.constructor))
-  }
 
   static formatCardInfo (res: IFreebincheckerResponse): ?ICardInfo {
     const {card, issuer, country} = res

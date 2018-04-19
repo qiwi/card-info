@@ -1,4 +1,4 @@
-import AbstractService from '../../src/service/abstract'
+import AbstractService, {AbstractRemoteService} from '../../src/service/abstract'
 
 class CustomService extends AbstractService {}
 
@@ -156,6 +156,22 @@ describe('service/abstract', () => {
             done()
           })
           .catch()
+      })
+    })
+  })
+
+  describe('AbstractRemoteService', () => {
+    describe('static', () => {
+      describe('formatPaymentSystem', () => {
+        it('returns value as is', () => {
+          expect(AbstractRemoteService.formatPaymentSystem('foo')).toBe('foo')
+        })
+      })
+
+      describe('formatCardInfo', () => {
+        it('returns value as is', () => {
+          expect(AbstractRemoteService.formatCardInfo('foo')).toBe('foo')
+        })
       })
     })
   })
