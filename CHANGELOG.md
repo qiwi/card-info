@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/qiwi/card-info/compare/v0.5.0...v0.6.0) (2018-04-19)
+
+
+### Features
+
+* abstractService get* methods returns Promise<null> instead of exception ([c2f7a4f](https://github.com/qiwi/card-info/commit/c2f7a4f))
+* add freebinchecker service ([4e048f1](https://github.com/qiwi/card-info/commit/4e048f1))
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/qiwi/card-info/compare/v0.4.0...v0.5.0) (2018-04-18)
 
