@@ -9,8 +9,9 @@
 Complex utility for getting card info by its PAN.
 Supported providers:
 * preservice (dumb checks on client-side)
-* [Binlist.net](https://binlist.net/)
+* [Binlist](https://binlist.net/)
 * [Braintree](https://github.com/braintree/credit-card-type)
+* [Breebinchecker](https://www.freebinchecker.com/bin-api)
 * `<CustomService>`
 
 #### Glossary
