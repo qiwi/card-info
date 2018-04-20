@@ -130,20 +130,20 @@ describe('service/abstract', () => {
         class Service extends AbstractService {
           static DEFAULT_OPTS = DEFAULT_OPTS
         }
-        const data = 'foo'
+        const pan = '12345'
         const opts = {transport: {foo: 'bar'}}
         const service = new Service(opts)
         const formatter = res => res
 
-        fetch.once(JSON.stringify(data))
+        fetch.once(JSON.stringify(pan))
 
-        Service.performRequest(data, service.opts, formatter)
+        Service.performRequest(pan, service.opts, formatter)
           .then(() => {
-            expect(fetch).toHaveBeenCalledWith('https://example.com/foo',
+            expect(fetch).toHaveBeenCalledWith('https://example.com/12345',
               {
                 foo: 'bar',
                 headers: {foo: 'bar'},
-                url: 'https://example.com/foo'
+                url: 'https://example.com/12345'
               })
             done()
           })

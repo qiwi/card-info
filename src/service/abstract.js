@@ -59,7 +59,9 @@ export class AbstractService {
   }
 
   static performRequest (pan: string, opts: IServiceOpts, formatter: (res: IAny) => ?ICardInfo | ?IPaymentSystem): Promise<IAny> {
-    const url = `${opts.url || ''}/${pan}`
+    // NOTE There's no need to pass entire PAN value to server-side. BIN is enough
+    const bin = this.normalizeBin(pan)
+    const url = `${opts.url || ''}/${bin}`
     const {transport, headers, skipError} = opts
 
     return assets.transport({
@@ -97,19 +99,11 @@ export class AbstractRemoteService extends AbstractService implements IService {
   $value: any
 
   getPaymentSystem (pan: string): Promise<?IPaymentSystem> {
-    return AbstractService.performRequest(
-      AbstractService.normalizePan(pan),
-      this.opts,
-      this.constructor.formatPaymentSystem.bind(this.constructor)
-    )
+    return AbstractService.performRequest(pan, this.opts, this.constructor.formatPaymentSystem.bind(this.constructor))
   }
 
   getCardInfo (pan: string): Promise<?ICardInfo> {
-    return AbstractService.performRequest(
-      AbstractService.normalizeBin(pan),
-      this.opts,
-      this.constructor.formatCardInfo.bind(this.constructor)
-    )
+    return AbstractService.performRequest(pan, this.opts, this.constructor.formatCardInfo.bind(this.constructor))
   }
 
   static formatPaymentSystem (res: IAny) {
