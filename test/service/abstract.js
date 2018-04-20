@@ -6,7 +6,9 @@ const {
   normalizePaymentSystem,
   parseResponse,
   performRequest,
-  promiseNull
+  promiseNull,
+  normalizePan,
+  DEFAULT_OPTS
 } = AbstractService
 
 describe('service/abstract', () => {
@@ -47,7 +49,7 @@ describe('service/abstract', () => {
       it('mixes defaults and custom values', () => {
         const foo = {bar: 'baz'}
 
-        expect(AbstractService.resolveOpts(foo)).toEqual(foo)
+        expect(AbstractService.resolveOpts(foo)).toEqual({...foo, ...DEFAULT_OPTS})
       })
     })
 
@@ -156,6 +158,26 @@ describe('service/abstract', () => {
             done()
           })
           .catch()
+      })
+    })
+
+    describe('normalizePan', () => {
+      it('replaces any non-numeric symbols from input string', () => {
+        expect(normalizePan('foo12bar3')).toBe('123')
+      })
+
+      it('converts falsy types to empty string', () => {
+        expect(normalizePan(false)).toBe('')
+        expect(normalizePan(null)).toBe('')
+      })
+    })
+
+    describe('normalizeBin', () => {
+      it('replaces any non-numeric symbols', () => {
+        expect(AbstractService.normalizeBin('foo12bar3')).toBe('123')
+      })
+      it('trims bin to required length', () => {
+        expect(AbstractService.normalizeBin('1234567890')).toBe('123456')
       })
     })
   })

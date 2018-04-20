@@ -12,6 +12,10 @@ import type {
 
 import assets from '../assets'
 
+export const DEFAULT_OPTS = {
+  binLength: 6
+}
+
 export class AbstractService {
   opts: IServiceOpts
   $key: IServiceKeys
@@ -36,6 +40,16 @@ export class AbstractService {
 
   static resolveOpts (raw: IAny): IServiceOpts {
     return Object.assign({}, this.DEFAULT_OPTS, raw)
+  }
+
+  static normalizePan (pan: string): string {
+    return ('' + pan).replace(/\D/g, '')
+  }
+
+  static normalizeBin (pan: string, binLength: ?number): string {
+    const targetLength = binLength || this.DEFAULT_OPTS.binLength
+
+    return this.normalizePan(pan).slice(0, targetLength)
   }
 
   static normalizePaymentSystem (value: string): string | null {
@@ -74,7 +88,7 @@ export class AbstractService {
     return new assets.Promise(resolve => resolve(null))
   }
 
-  static DEFAULT_OPTS: Object = {}
+  static DEFAULT_OPTS: Object = DEFAULT_OPTS
 }
 
 export class AbstractRemoteService extends AbstractService implements IService {
@@ -83,11 +97,19 @@ export class AbstractRemoteService extends AbstractService implements IService {
   $value: any
 
   getPaymentSystem (pan: string): Promise<?IPaymentSystem> {
-    return AbstractService.performRequest(pan, this.opts, this.constructor.formatPaymentSystem.bind(this.constructor))
+    return AbstractService.performRequest(
+      AbstractService.normalizePan(pan),
+      this.opts,
+      this.constructor.formatPaymentSystem.bind(this.constructor)
+    )
   }
 
   getCardInfo (pan: string): Promise<?ICardInfo> {
-    return AbstractService.performRequest(pan, this.opts, this.constructor.formatCardInfo.bind(this.constructor))
+    return AbstractService.performRequest(
+      AbstractService.normalizeBin(pan),
+      this.opts,
+      this.constructor.formatCardInfo.bind(this.constructor)
+    )
   }
 
   static formatPaymentSystem (res: IAny) {
