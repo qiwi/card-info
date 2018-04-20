@@ -11,7 +11,7 @@ Supported providers:
 * preservice (dumb checks on client-side)
 * [Binlist](https://binlist.net/)
 * [Braintree](https://github.com/braintree/credit-card-type)
-* [Breebinchecker](https://www.freebinchecker.com/bin-api)
+* [Freebinchecker](https://www.freebinchecker.com/bin-api)
 * `<CustomService>`
 
 #### Glossary
@@ -48,10 +48,11 @@ By default card-info uses native `Promise` and `fetch`. You may replace them wit
 #### Service configuration
 Each service implementation has own supported opts list, but there is a common part:  
 
-| Option        | Default       | Description                                                          |
-| ------------- | ------------- | -------------------------------------------------------------------- |
-| skipError     | true          | means, that any fetch exception would be converted to null response  |
-| url           | string        | endpoint url                                                         |
+| Option        | Type    | Default       | Description                                                          |
+| ------------- | ------- | ------------- | -------------------------------------------------------------------- |
+| skipError     | bool    | true          | means, that any fetch exception would be converted to null response  |
+| url           | string  | null          | endpoint url                                                         |
+| transport     | Object  | null          | optional extras, merged to fetch arg.<br>For example, `{retries: [{delay: 100},{delay: 2000}}`|
 
 ##### Service composition
 ```javascript
@@ -64,21 +65,6 @@ Each service implementation has own supported opts list, but there is a common p
     
     composed.getPaymentSystem('5321 4012 3456 7890')  // 'Mastercard'
     composed.getCardInfo('5321 4012 3456 7890')       // if preService returns null, the request would be processed with binlist.net backend
-```
-
-##### `CustomService`
-Composer supports any impl of [IService](./src/interface.js), so you're let to create your own class.
-```javascript
-    import AbstractService from '@qiwi/card-info/service/abstract'
-
-    class CustomService extends AbstractService implements IService {
-        getPaymentSystem(pan: string): Promise<?IPaymentSystem> {
-            // ...
-        }
-        getCardInfo(pan: string): Promise<?ICardInfo> {
-            // ...
-        }
-    }
 ```
 
 #### `Braintree`
@@ -106,6 +92,21 @@ Braintree's `credit-card-type` lib is exposed as static property of the class, s
     const service = new BraintreeService()
     
     service.getPaymentSystem('1234567890123456')    // Promise<'FOO'>
+```
+
+##### `CustomService`
+Composer supports any impl of [IService](./src/interface.js), so you're let to create your own class.
+```javascript
+    import AbstractService from '@qiwi/card-info/service/abstract'
+
+    class CustomService extends AbstractService implements IService {
+        getPaymentSystem(pan: string): Promise<?IPaymentSystem> {
+            // ...
+        }
+        getCardInfo(pan: string): Promise<?ICardInfo> {
+            // ...
+        }
+    }
 ```
 
 ##### What's `PreService`
