@@ -17,7 +17,7 @@ describe('service/braintree', () => {
       it('resolves paysys by full pattern', done => {
         service.getPaymentSystem('54321')
           .then(key => {
-            expect(key).toEqual('MASTER-CARD')
+            expect(key).toEqual('MASTERCARD')
             done()
           })
           .catch()
