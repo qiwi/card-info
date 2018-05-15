@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/card-info",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Library for getting card info by its PAN",
   "main": "dist/index.js",
   "scripts": {
