@@ -4,7 +4,7 @@
 [![coverage](https://img.shields.io/coveralls/qiwi/card-info.svg?maxAge=3600)](https://coveralls.io/github/qiwi/card-info)
 [![dependencyStatus](https://img.shields.io/david/qiwi/card-info.svg?maxAge=3600)](https://david-dm.org/qiwi/card-info)
 [![devDependencyStatus](https://img.shields.io/david/dev/qiwi/card-info.svg?maxAge=3600)](https://david-dm.org/qiwi/card-info)
-[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/qiwi/card-info)
+[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/qiwi/card-info) [![Greenkeeper badge](https://badges.greenkeeper.io/qiwi/card-info.svg)](https://greenkeeper.io/)
 
 Complex utility for getting card info by its PAN.
 Supported providers:
