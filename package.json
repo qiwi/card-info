@@ -36,7 +36,7 @@
   "author": "Anton Golub <a.golub@qiwi.com>",
   "license": "MIT",
   "dependencies": {
-    "credit-card-type": "^7.0.0",
+    "credit-card-type": "^8.0.0",
     "luhn-alg": "^1.0.1"
   },
   "devDependencies": {
