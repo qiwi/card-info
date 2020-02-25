@@ -20,7 +20,8 @@
     "postversion": "npm run push && npm publish",
     "push": "git push --follow-tags origin master",
     "doc": "documentation build src/** -f html -o docs",
-    "docs": "npm run doc"
+    "docs": "npm run doc",
+    "postupdate": "npm i && npm audit fix && npm run build && npm run test"
   },
   "repository": {
     "type": "git",
