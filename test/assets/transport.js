@@ -9,7 +9,7 @@ describe('assets/transport', () => {
 
     transport({url: 'https://example.com'})
       .then(res => {
-        expect(res.body).toEqual(data)
+        expect(res.body.toString()).toEqual(data)
         done()
       })
       .catch()

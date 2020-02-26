@@ -6,7 +6,7 @@ describe('service/braintree', () => {
   describe('proto', () => {
     describe('getPaymentSystem', () => {
       it('resolves paysys by prefix', done => {
-        service.getPaymentSystem('4')
+        service.getPaymentSystem('4111')
           .then(key => {
             expect(key).toEqual('VISA')
             done()
@@ -51,8 +51,9 @@ describe('service/braintree', () => {
         BraintreeService.creditCardType.addCard({
           niceType: 'Foo',
           type: 'foo',
-          prefixPattern: /^(12345)$/,
-          exactPattern: /^(12345)\d*$/,
+          patterns: [
+            12345
+          ],
           gaps: [4, 8, 12],
           lengths: [16],
           code: {
