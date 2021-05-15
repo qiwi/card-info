@@ -59,7 +59,7 @@
     "flow-remove-types": "^2.119.0",
     "flow-typed": "^3.0.0",
     "jest": "^25.1.0",
-    "jest-fetch-mock": "^3.0.1",
+    "jest-fetch-mock": "3.0.3",
     "lodash": "^4.17.15",
     "standard-flow": "^1.0.0",
     "standard-version": "^7.1.0"
