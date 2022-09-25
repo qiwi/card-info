@@ -5381,18 +5381,18 @@
       }
     },
     "flow-parser": {
-      "version": "0.119.0",
-      "resolved": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.119.0.tgz",
-      "integrity": "sha512-P49kGSnCII6c5/P4QsVDtoam83zrXrdq4EUJDVOpbeURy48RM8BOboKcEfFHS1xnNID01UXu8Hf60b+m23T81w==",
+      "version": "0.187.1",
+      "resolved": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.187.1.tgz",
+      "integrity": "sha512-ZvlTeakTTMmYGukt4EIQtLEp4ie45W+jK325uukGgiqFg2Rl7TdpOJQbOLUN2xMeGS+WvXaK0uIJ3coPGDXFGQ==",
       "dev": true
     },
     "flow-remove-types": {
-      "version": "2.119.0",
-      "resolved": "https://registry.npmjs.org/flow-remove-types/-/flow-remove-types-2.119.0.tgz",
-      "integrity": "sha512-kQzmMyl+gRqA2hU4hO/79hOT2dU9cAT37izRukyjqnItBlrZ1J4SYeqwnkDeOx4j2Azg19CxWNKullVt2kGZFA==",
+      "version": "2.187.1",
+      "resolved": "https://registry.npmjs.org/flow-remove-types/-/flow-remove-types-2.187.1.tgz",
+      "integrity": "sha512-kfNwss9K0A76VeeYZgNQ2pTeNPGmVNOh9mBDDJOzueejctZL/Tuiwa8lT10LAWRxTQIzdQcWFrUEzGSDSzZNdg==",
       "dev": true,
       "requires": {
-        "flow-parser": "^0.119.0",
+        "flow-parser": "^0.187.1",
         "pirates": "^3.0.2",
         "vlq": "^0.2.1"
       }
