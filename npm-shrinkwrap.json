@@ -5380,21 +5380,56 @@
         }
       }
     },
-    "flow-parser": {
-      "version": "0.119.0",
-      "resolved": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.119.0.tgz",
-      "integrity": "sha512-P49kGSnCII6c5/P4QsVDtoam83zrXrdq4EUJDVOpbeURy48RM8BOboKcEfFHS1xnNID01UXu8Hf60b+m23T81w==",
+    "flow-enums-runtime": {
+      "version": "0.0.6",
+      "resolved": "https://registry.npmjs.org/flow-enums-runtime/-/flow-enums-runtime-0.0.6.tgz",
+      "integrity": "sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==",
       "dev": true
     },
-    "flow-remove-types": {
-      "version": "2.119.0",
-      "resolved": "https://registry.npmjs.org/flow-remove-types/-/flow-remove-types-2.119.0.tgz",
-      "integrity": "sha512-kQzmMyl+gRqA2hU4hO/79hOT2dU9cAT37izRukyjqnItBlrZ1J4SYeqwnkDeOx4j2Azg19CxWNKullVt2kGZFA==",
+    "flow-estree": {
+      "version": "0.337.0",
+      "resolved": "https://registry.npmjs.org/flow-estree/-/flow-estree-0.337.0.tgz",
+      "integrity": "sha512-8u9x/Ur45zWAdlD8SKHq3MnMttR6MB0x2xna3mNlwfs8BSJ0rCH/1Cyrfvq7eSq61ppshRHZbmQhOp870WmAOA==",
+      "dev": true
+    },
+    "flow-parser": {
+      "version": "0.337.0",
+      "resolved": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.337.0.tgz",
+      "integrity": "sha512-jGsqT5qJ6J/7gD870pKgL7K8x8l6IzUvtBlRX+OdLP4EGrpDF+3sUqF8HpyR/YcAJs2mVMVhW2GZsxmtXc+aIw==",
       "dev": true,
       "requires": {
-        "flow-parser": "^0.119.0",
+        "flow-estree": "0.337.0"
+      }
+    },
+    "flow-remove-types": {
+      "version": "2.337.0",
+      "resolved": "https://registry.npmjs.org/flow-remove-types/-/flow-remove-types-2.337.0.tgz",
+      "integrity": "sha512-ZVfPLnPZdDSjV0VwWxEfoZFzMqJv7j9J7WbAfrkKicQto/YtKiqvZCzyuYRX9bg5mKvNseftCbkzstfG4li87g==",
+      "dev": true,
+      "requires": {
+        "flow-enums-runtime": "^0.0.6",
+        "flow-parser": "^0.337.0",
         "pirates": "^3.0.2",
+        "source-map-support": "^0.5.21",
         "vlq": "^0.2.1"
+      },
+      "dependencies": {
+        "source-map": {
+          "version": "0.6.1",
+          "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz",
+          "integrity": "sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==",
+          "dev": true
+        },
+        "source-map-support": {
+          "version": "0.5.21",
+          "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.21.tgz",
+          "integrity": "sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==",
+          "dev": true,
+          "requires": {
+            "buffer-from": "^1.0.0",
+            "source-map": "^0.6.0"
+          }
+        }
       }
     },
     "flow-typed": {
